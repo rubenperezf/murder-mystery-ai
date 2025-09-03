@@ -161,11 +161,12 @@ Sara fue vista en discusión acalorada con Valdez sobre ética de investigación
 };
 
 export async function GET(request: NextRequest) {
+  // Get language parameter from URL
+  const { searchParams } = new URL(request.url);
+  const lang = searchParams.get('lang') || 'en';
+  const language = (lang === 'es') ? 'es' : 'en';
+  
   try {
-    // Get language parameter from URL
-    const { searchParams } = new URL(request.url);
-    const lang = searchParams.get('lang') || 'en';
-    const language = (lang === 'es') ? 'es' : 'en';
 
     // In a real implementation, you would make an API call to Claude here:
     // const claudeResponse = await fetch('https://api.anthropic.com/v1/messages', {
